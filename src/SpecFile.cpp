@@ -8086,10 +8086,10 @@ void SpecFile::write( std::ostream &strm,
   std::unique_lock<std::recursive_mutex> scoped_lock( mutex_ );
   
   if( sample_nums.empty() )
-    throw runtime_error( "No sample numbers were specified to write out" );
+    cerr << "No sample numbers were specified to write out" << endl;
   
   if( det_nums.empty() )
-    throw runtime_error( "No detector numbers were specified to write out" );
+    cerr << "No detector numbers were specified to write out" << endl;
   
   for( const int sample : sample_nums )
   {
@@ -8126,7 +8126,7 @@ void SpecFile::write( std::ostream &strm,
   }//if( we dont want all the measurements )
   
   if( info.measurements_.empty() )
-    throw runtime_error( "No Measurements to write out" );
+    cerr << "No Measurements to write out" << endl;
   
   const std::set<int> &samples = info.sample_numbers_;
   const set<int> detectors( info.detector_numbers_.begin(), info.detector_numbers_.end() );

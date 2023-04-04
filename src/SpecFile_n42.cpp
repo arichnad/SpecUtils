@@ -4561,8 +4561,14 @@ namespace SpecUtils
       
       if( !loaded )
         throw runtime_error( "Failed to load" );
+    }catch(const std::exception& e)
+    {
+      cerr << "caught exception " << e.what() << endl;
+      reset();
+      return false;
     }catch(...)
     {
+      cerr << "caught exception unknown" << endl;
       reset();
       return false;
     }
@@ -6306,7 +6312,7 @@ namespace SpecUtils
     }//if( SSC Pacific that need to
     
     if( measurements_.empty() )
-      throw runtime_error( "No Measurements found inside ICD1/XML file" );
+      cerr << "No Measurements found inside ICD1/XML file" << endl;
     
     cleanup_after_load();
   }//bool load_2006_N42_from_doc( rapidxml::xml_node<char> *document_node )
