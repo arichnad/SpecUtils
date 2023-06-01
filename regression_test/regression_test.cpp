@@ -29,6 +29,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 
 #include <boost/filesystem.hpp>
@@ -313,7 +314,7 @@ void check_parse_time( const string basedir )
   map<path,double> cpu_parse_times, wall_parse_times;
   const vector<path> with_truth = candidates_with_truth_n42_files( basedir );
   
-  const SpecUtils::time_point_t start_time = chrono::system_clock::now();
+  const SpecUtils::time_point_t start_time = chrono::time_point_cast<chrono::microseconds>( chrono::system_clock::now() );
   
   for( const path &fpath : with_truth )
   {
